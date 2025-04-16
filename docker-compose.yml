@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  service1:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+
+  service2:
+    build:
+      context: ./BD
+      dockerfile: Dockerfile
+    ports:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Clase3
+      MYSQL_USER: briely
+      MYSQL_PASSWORD: toor
+
+  service3:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+
+networks:
+  app-network:
+    driver: bridge
